@@ -1,7 +1,8 @@
 <title>Pablo Damian Gonzalez Barreto</title>
 <h1>Bienvenido a mi juego de adivinanzas</h1>
 <p>
-<?php if ( ! isset($_GET['guess']) ) { 
+<?php
+ if ( ! isset($_GET['guess']) ) { 
 echo("Missing guess parameter");
  } else if ( strlen($_GET['guess']) < 1){ 
 echo("Your guess is too short");
