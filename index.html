@@ -1,116 +1,99 @@
-<html>
-
-<?php
-
-    if (!function_exists('http_response_code')) {
-        function http_response_code($code = NULL) {
-
-            if ($code !== NULL) {
-
-                switch ($code) {
-                    case 100: $text = 'Continue'; break;
-                    case 101: $text = 'Switching Protocols'; break;
-                    case 200: $text = 'OK'; break;
-                    case 201: $text = 'Created'; break;
-                    case 202: $text = 'Accepted'; break;
-                    case 203: $text = 'Non-Authoritative Information'; break;
-                    case 204: $text = 'No Content'; break;
-                    case 205: $text = 'Reset Content'; break;
-                    case 206: $text = 'Partial Content'; break;
-                    case 300: $text = 'Multiple Choices'; break;
-                    case 301: $text = 'Moved Permanently'; break;
-                    case 302: $text = 'Moved Temporarily'; break;
-                    case 303: $text = 'See Other'; break;
-                    case 304: $text = 'Not Modified'; break;
-                    case 305: $text = 'Use Proxy'; break;
-                    case 400: $text = 'Bad Request'; break;
-                    case 401: $text = 'Unauthorized'; break;
-                    case 402: $text = 'Payment Required'; break;
-                    case 403: $text = 'Forbidden'; break;
-                    case 404: $text = 'Not Found'; break;
-                    case 405: $text = 'Method Not Allowed'; break;
-                    case 406: $text = 'Not Acceptable'; break;
-                    case 407: $text = 'Proxy Authentication Required'; break;
-                    case 408: $text = 'Request Time-out'; break;
-                    case 409: $text = 'Conflict'; break;
-                    case 410: $text = 'Gone'; break;
-                    case 411: $text = 'Length Required'; break;
-                    case 412: $text = 'Precondition Failed'; break;
-                    case 413: $text = 'Request Entity Too Large'; break;
-                    case 414: $text = 'Request-URI Too Large'; break;
-                    case 415: $text = 'Unsupported Media Type'; break;
-                    case 500: $text = 'Internal Server Error'; break;
-                    case 501: $text = 'Not Implemented'; break;
-                    case 502: $text = 'Bad Gateway'; break;
-                    case 503: $text = 'Service Unavailable'; break;
-                    case 504: $text = 'Gateway Time-out'; break;
-                    case 505: $text = 'HTTP Version not supported'; break;
-                    default:
-                        exit('Unknown http status code "' . htmlentities($code) . '"');
-                    break;
-                }
-
-                $protocol = (isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0');
-
-                header($protocol . ' ' . $code . ' ' . $text);
-
-                $GLOBALS['http_response_code'] = $code;
-
-            } else {
-
-                $code = (isset($GLOBALS['http_response_code']) ? $GLOBALS['http_response_code'] : 200);
-
-            }
-
-            return $code;
-
-        }
-    ?>}
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>6d93ec0e</title>
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-          crossorigin="anonymous">
-    <style>
-        body{
-            background-color: silver;
-            text-align: center;
-        }
-
-        .box{
-            width: 440px;
-            height: 500px;
-            padding: 2rem;
-            margin: 2rem auto 0;
-            border-radius: 10px;
-            background-color: #f3f3f3;
-        }
-
-        form{
-            display: flex;
-            margin-top: 5rem;
-            padding-bottom: 5rem;
-        }
-    </style>
 </head>
-<body>
-    <!--  Container for the content  -->
-    <div class="box">
-        <h1>Rock Paper Scissors</h1>
-        <form action="index.php" method="post" autocomplete="off">
-            <input type="text" name="choice" class="form-control">
-            <input type="submit" name="shoot" value="Shoot" class="btn btn-success" />
-        </form>
-        
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<style>
+    .game_form {
+        text-align: center;
+        margin: 100px;
+        font-size: 150%;
+    }
+</style>
+
+<body>
+
+    <?php
+//        First shuffle/randomizer algorithm.
+//        There are multiple duplicated values to alter the options because otherwise
+//        the computer will almost always choose the same values
+//        and it is easy to win by learning/guessing the pattern.
+        $array = ['rock', 'rock', 'rock', 'rock', 'paper', 'paper', 'paper', 'paper', 'scissor', 'scissor', 'scissor', 'scissor'];
+        shuffle($array);
+        $computerSelection = $array[3];
+    
+//        Second shuffle/randomizer algorithm.
+//        $input = ["rock"=>"rock", "paper"=>"paper", "scissor"=>"scissor", 
+//                  "rock"=>"rock", "paper"=>"paper", "scissor"=>"scissor", 
+//                  "rock"=>"rock", "paper"=>"paper", "scissor"=>"scissor", 
+//                  "rock"=>"rock", "paper"=>"paper", "scissor"=>"scissor", 
+//                  "rock"=>"rock", "paper"=>"paper", "scissor"=>"scissor"];
+//        $computerRandomSelection = array_rand($input, 1);
+    ?>
+    
+    <form class="game_form" action="index.php" method="POST">
+      
+        <input type="radio" name="playerSelection" value="rock">Rock<br>
+        <input type="radio" name="playerSelection" value="paper">Paper<br>
+        <input type="radio" name="playerSelection" value="scissor">Scissor<br>
+       
+        <button name="submit">SUBMIT</button><br><br>
+        
+    <?php
+        if (isset($_POST['playerSelection']) == NULL) {
+            echo "Select an option.";
+        }
+        
+        if (isset($_POST['playerSelection'])) {
+            $playerSelection = $_POST['playerSelection'];
+            echo "You selected: " . $playerSelection . "<br>";
+            echo "Computer selected: " . $computerSelection . "<br>";
+            
+        if ($playerSelection == 'rock') {
+            if ($computerSelection == 'rock')
+                echo "<h1>Draw...</h1>";
+            if ($computerSelection == 'paper')
+                echo "<h1>You lose.</h1>";
+            if ($computerSelection == 'scissor')
+                echo "<h1>Winner!</h1>";
+        }
+            
+        if ($playerSelection == 'paper') {
+            if ($computerSelection == 'paper')
+                echo "<h1>Draw...</h1>";
+            if ($computerSelection == 'rock')
+                echo "<h1>Winner!</h1>";
+            if ($computerSelection == 'scissor')
+                echo "<h1>You lose.</h1>";
+        }
+            
+        if ($playerSelection == 'scissor') {
+            if ($computerSelection == 'scissor')
+                echo "<h1>Draw...</h1>";
+            if ($computerSelection == 'rock')
+                echo "<h1>You lose.</h1>";
+            if ($computerSelection == 'paper')
+                echo "<h1>Winner!</h1>";
+        }
+        }
+    ?>
+    </form>
+    
+<!--
+Just a reference to build the winner vs the looser.
+Rock & Rock ===== Draw
+Rock & Paper ==== Paper wins
+Rock & Scissor == Rock wins
+
+Paper & Paper === Draw
+Paper & Rock ==== Paper wins
+Paper & Scissor = Scissor wins
+
+Scissor & Scissor = Draw
+Scissor & Rock == Rock wins
+Scissor & Paper = Scissor wins
+-->
 </body>
 </html>
