@@ -20,7 +20,22 @@
             <option value="ti">Tijeras</option>
         </select>
         <p></p>
-        <input type="submit" value="Verificar Ganador">
+        <input type="submit" value="Verificar Ganador" </form>
+<?php
+ if ( ! isset($_GET['guess']) ) { 
+echo("Missing guess parameter");
+ } else if ( strlen($_GET['guess']) < 1){ 
+echo("Your guess is too short");
+ } else if ( ! is_numeric($_GET['guess'])) { 
+echo("Your guess is not a number"); 
+} else if ( $_GET['guess'] < 42 ) { 
+echo("Your guess is too low"); 
+} else if ( $_GET['guess'] > 42 ) { 
+echo("Your guess is demasiado alto"); 
+} else { 
+echo("Felicidades - Tienes razón"); 
+}  
+?> >
         <p></p>
  </form>
 <?php
