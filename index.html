@@ -14,24 +14,6 @@
 </style>
 
 <body>
-
-    <?php
-//        First shuffle/randomizer algorithm.
-//        There are multiple duplicated values to alter the options because otherwise
-//        the computer will almost always choose the same values
-//        and it is easy to win by learning/guessing the pattern.
-        $array = ['rock', 'rock', 'rock', 'rock', 'paper', 'paper', 'paper', 'paper', 'scissor', 'scissor', 'scissor', 'scissor'];
-        shuffle($array);
-        $computerSelection = $array[3];
-    
-//        Second shuffle/randomizer algorithm.
-//        $input = ["rock"=>"rock", "paper"=>"paper", "scissor"=>"scissor", 
-//                  "rock"=>"rock", "paper"=>"paper", "scissor"=>"scissor", 
-//                  "rock"=>"rock", "paper"=>"paper", "scissor"=>"scissor", 
-//                  "rock"=>"rock", "paper"=>"paper", "scissor"=>"scissor", 
-//                  "rock"=>"rock", "paper"=>"paper", "scissor"=>"scissor"];
-//        $computerRandomSelection = array_rand($input, 1);
-    ?>
     
     <form class="game_form" action="index.php" method="POST">
       
