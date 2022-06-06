@@ -1,115 +1,55 @@
 
-       <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-<title>6d93ec0e</title>
-        <style>
- body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-      background: rgb(14, 30, 37);
-      color: white;
-      overflow: hidden;
-      margin: 0;
-      padding: 0;
-    }
+     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "https://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Piedra, papel o tijera</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </head>
+    <body>
+<?php
 
-    h1 {
-      margin: 0;
-      font-size: 22px;
-      line-height: 24px;
-    }
-
-    .main {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      width: 100vw;
-    }
-
-    .card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      width: 75%;
-      max-width: 364px;
-      padding: 24px;
-      background: white;
-      color: rgb(14, 30, 37);
-      border-radius: 8px;
-      box-shadow: 0 2px 4px 0 rgba(14, 30, 37, .16);
-    }
-
-    a {
-      margin: 0;
-      text-decoration: none;
-      font-weight: 600;
-      line-height: 24px;
-      color: #007067;
-    }
-
-    a svg {
-      position: relative;
-      top: 2px;
-    }
-
-    a:hover,
-    a:focus {
-      text-decoration: underline;
-      text-decoration-color: #f4bb00;
-    }
-
-    a:hover svg path{
-      fill: #007067;
-    }
-
-    p:last-of-type {
-      margin-bottom: 0;
-    }
-
-        </style>
-        </head>
-<body>
-<div class="container">
-<h1>Welcome to Rock Paper Scissors</h1>
-<p>
-<a href="login.php">Please Log In</a>
-</p>
-<p>
-Attempt to go to 
-<a href="game.php">game.php</a> without logging in - it should fail with an error message.
-<p>
-<a href="https://www.wa4e.com/assn/rps/" target="_blank">Specification for this Application</a>
-</p><form action="netlify.app"method="POST">
-        <label for="j1">Jugador 1:</label>
-        <select name="j1">
-            <option value="pi">Piedra</option>
-            <option value="pa">Papel</option>
-            <option value="ti">Tijeras</option>
-        </select>
-        <p></p>
-        <label for="j2">Jugador 2:</label>
-        <select name="j2">
-            <option value="pi">Piedra</option>
-            <option value="pa">Papel</option>
-            <option value="ti">Tijeras</option>
-        </select>
-        <p></p>
-        <input type="submit" value="Verificar Ganador">
-        <p></p>
-    </form>
-</div>
-        
-      
-  
-
-    </style></head><body>
-    <div class="main">
-      <div class="card">
-        <div class="header">
-              </div>
-    </script>
-</body>
+if ($_SERVER['REQUEST_METHOD']=='POST')
+{
+    $jugada_del_usuario = intval ($_POST['jugada_del_usuario']);
+    $jugada_del_ordenador=1+rand()%3;
+    if($jugada_del_ordenador==1)
+        echo 'La jugada del ordenador es Piedra<br>'
+    if($jugada_del_ordenador==2)
+        echo 'La jugada del ordenador es Papel<br>'
+    if($jugada_del_ordenador==3)
+        echo 'La jugada del ordenador es Tijera<br>'
+    if($jugada_del_usuario==$jugada_del_ordenador)
+        echo 'Empate<br>'
+    if(($jugada_del_usuario==1&&$jugada_del_ordenador==3)||($jugada_del_usuario==2&&$jugada_del_ordenador==1)||($jugada_del_usuario==3&&$jugada_del_ordenador==2))
+        echo 'Gana usuario<br>'
+    if(($jugada_del_usuario==3&&$jugada_del_ordenador==1)||($jugada_del_usuario==1&&$jugada_del_ordenador==2)||($jugada_del_usuario==2&&$jugada_del_ordenador==3))
+        echo 'Gana ordenador<br>'
+    echo 'Valor de jugada del ordenador: ' . $jugada_del_ordenador . "<br/>\n";
+}
+ 
+?>
+        <form method="post">
+            <table style="text-align: left; margin-left: auto; margin-right: auto;" border="1" cellpadding="1" cellspacing="1">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="jugada_del_usuario">Selecciona el valor de jugada del usuario:</label>
+                        </td>
+                        <td>
+                            <select name="jugada_del_usuario" required="required">
+                                <option value="1">Piedra</option>
+                                <option value="2">Papel</option>
+                                <option value="3">Tijera</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td colspan="2" rowspan="1">
+                            <input value="Procesar" type="submit" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </body>
+</html>
