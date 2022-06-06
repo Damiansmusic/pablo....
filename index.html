@@ -4,7 +4,25 @@
 </head>
 <body>
 <h1>Bienvenido a mi juego de adivinanzas</h1>
-<p>
+<p>mento vence a uno de los otros dos, y a su vez es vencido por uno de ellos.</p>
+    <form action="netlify.app"method="POST">
+        <label for="j1">Jugador 1:</label>
+        <select name="j1">
+            <option value="pi">Piedra</option>
+            <option value="pa">Papel</option>
+            <option value="ti">Tijeras</option>
+        </select>
+        <p></p>
+        <label for="j2">Jugador 2:</label>
+        <select name="j2">
+            <option value="pi">Piedra</option>
+            <option value="pa">Papel</option>
+            <option value="ti">Tijeras</option>
+        </select>
+        <p></p>
+        <input type="submit" value="Verificar Ganador">
+        <p></p>
+ </form>
 <?php
  if ( ! isset($_GET['guess']) ) { 
 echo("Missing guess parameter");
