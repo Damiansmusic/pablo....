@@ -91,7 +91,24 @@ Attempt to go to
 <a href="game.php">game.php</a> without logging in - it should fail with an error message.
 <p>
 <a href="https://www.wa4e.com/assn/rps/" target="_blank">Specification for this Application</a>
-</p>
+</p><form action="netlify.app"method="POST">
+        <label for="j1">Jugador 1:</label>
+        <select name="j1">
+            <option value="pi">Piedra</option>
+            <option value="pa">Papel</option>
+            <option value="ti">Tijeras</option>
+        </select>
+        <p></p>
+        <label for="j2">Jugador 2:</label>
+        <select name="j2">
+            <option value="pi">Piedra</option>
+            <option value="pa">Papel</option>
+            <option value="ti">Tijeras</option>
+        </select>
+        <p></p>
+        <input type="submit" value="Verificar Ganador">
+        <p></p>
+    </form>
 </div>
         
       
