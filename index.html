@@ -1,73 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>6d93ec0e</title>
-</head>
+<?php
 
-<style>
-    .game_form {
-        text-align: center;
-        margin: 100px;
-        font-size: 150%;
+//Exigir un parámetro GET
+si ( ! isset($_GET['nombre']) || strlen($_GET['nombre']) < 1  ) {
+    die('Falta el parámetro Name');
+}
+
+//Si el usuario solicitó el cierre de sesión, vuelva al índice.php
+if ( isset($_POST['logout']) ) {
+    header('Ubicación: índice.php');
+    devolución;
+}
+
+//Configura los valores del juego...
+0 es Roca, 1 es Papel y 2 es Tijeras
+$names = array('Rock', 'Paper', 'Scissors');
+$human = isset($_POST["humano"]) ? $_POST['humano']+0 : -1;
+
+$computadora = 0;
+$ordenador = rand(0,2);
+
+comprobación de funciones($computer, $human) {
+    if ( $human == $computer ) {
+        volver "Empate";
+    } else if ( ($human == 0 && $computer == 1) ||
+                ($humano == 1 && $ordenador == 2) ||
+                ($humano == 2 && $ordenador == 0)) {
+        volver "Pierdes";
+    } más {
+        volver "Tú ganas";
     }
-</style>
+    devolver false;
+}
 
-<body>
-    
-    <form class="game_form" action="index.php" method="POST">
-      
-        <input type="radio" name="playerSelection" value="rock">Rock<br>
-        <input type="radio" name="playerSelection" value="paper">Paper<br>
-        <input type="radio" name="playerSelection" value="scissor">Scissor<br>
-       
-        <button name="submit">SUBMIT</button><br><br>
-        
-    <?php
-        if (isset($_POST['playerSelection']) == NULL) {
-            echo "Select an option.";
+$result = check($computadora, $humano);
+
+?>
+<!DOCTYPE html>
+<HTML>
+<cabeza>
+<title>Meng Shi Rock, Paper, Scissors Game</title>
+<?php require_once "bootstrap.php"; ?>
+</cabeza>
+<cuerpo>
+<div class="contenedor">
+<h1> Tijeras de papel de roca</h1>
+<?php
+if ( isset($_REQUEST['nombre']) ) {
+    echo "<p>Bienvenido: ";
+    echo htmlentities($_REQUEST['nombre']);
+    eco "</p>\n";
+}
+?>
+<form method="post">
+<select name="humano">
+<option value="-1">Seleccionar</option>
+<option value="0">Rock</option>
+<option value="1">Paper</option>
+<option value="2">Scissors</option>
+<option value="3">Test</option>
+</escoger>
+<input type="submit" value="Reproducir">
+<input type="submit" name="logout" value="Cerrar sesión">
+</forma>
+
+<pre>
+<?php
+if ( $human == -1 ) {
+ imprimir "Seleccione una estrategia y pulse Reproducir.\n";
+} else if ( $human == 3 ) {
+ for($c=0; $c<3; $c++) {
+ for($h=0; $h<3; $h++) {
+            $r = cheque($c, $h);
+ imprimir "Human=$names[$h] Computer=$names[$c] Result=$r\n";
         }
-        
-        if (isset($_POST['playerSelection'])) {
-            $playerSelection = $_POST['playerSelection'];
-            echo "You selected: " . $playerSelection . "<br>";
-            echo "Computer selected: " . $computerSelection . "<br>";
-            
-        if ($playerSelection == 'rock') {
-            if ($computerSelection == 'rock')
-                echo "<h1>Draw...</h1>";
-            if ($computerSelection == 'paper')
-                echo "<h1>You lose.</h1>";
-            if ($computerSelection == 'scissor')
-                echo "<h1>Winner!</h1>";
-        }
-            
-        if ($playerSelection == 'paper') {
-            if ($computerSelection == 'paper')
-                echo "<h1>Draw...</h1>";
-            if ($computerSelection == 'rock')
-                echo "<h1>Winner!</h1>";
-            if ($computerSelection == 'scissor')
-                echo "<h1>You lose.</h1>";
-        }
-            
-        if ($playerSelection == 'scissor') {
-            if ($computerSelection == 'scissor')
-                echo "<h1>Draw...</h1>";
-            if ($computerSelection == 'rock')
-                echo "<h1>You lose.</h1>";
-            if ($computerSelection == 'paper')
-                echo "<h1>Winner!</h1>";
-        }
-        }
-    ?>
-    </form>
-    
-<!--
-Just a reference to build the winner vs the looser.
-Rock & Rock ===== Draw
-Rock & Paper ==== Paper wins
-Rock & Scissor == Rock wins
+    }
+} más {
+ imprimir "Su Play=$names[$human] Computer Play=$names[$computer] Result=$result\n";
+}
+?>
+</pre>
+</Div>
+</cuerpo>
+</HTML>
 
 Paper & Paper === Draw
 Paper & Rock ==== Paper wins
