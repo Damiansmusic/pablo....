@@ -1,82 +1,33 @@
-<head><!-- Latest compiled and minified CSS -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Charles Severance - Autos Database</title>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <!-- Custom styles for this template --><link href="starter-template.css" rel="stylesheet">
-    <title>6d93ec0e</title>
+
 </head>
+
 <body>
-<div class="container">
-<h1>Please Log In</h1>
-<p style="color: red;">Incorrect password</p>
-<form method="POST">
-<label for="nam">User Name</label>
-<input type="text" name="who" id="nam"><br><label for="id_1723">Password</label>
-<input type="text" name="pass" id="id_1723"><br><input type="submit" value="Log In"><input type="submit" name="cancel" value="Cancel"></form>
-<p>
-For a password hint, view source and find a password hint
-in the HTML comments.
-<!-- Hint: The password is the four character sound a cat
-makes (all lower case) followed by 123. -->
-</p>
-</div>
+    <div class="container">
+        <h1>Welcome to Autos Database</h1>
+        <p>
+            <a href="login.php">Please Log In</a>
+        </p>
+        <p>
+            Attempt to go to
+            <a href="autos.php">autos.php</a> without logging in - it should fail with an error message.
+            <p>
+                <a href="https://www.wa4e.com/assn/autosdb/" target="_blank">Specification for this Application</a>
+            </p>
+            <p>
+                <b>Note:</b> Your implementation should retain data across multiple logout/login sessions. This sample implementation clears all its data on logout - which you should not do in your implementation.
+            </p>
+    </div>
 </body>
-?>
-<!DOCTYPE html>
-<HTML>
-<cabeza>
-<title>6d93ec0e</title>
-<?php require_once "bootstrap.php"; ?>
-</cabeza>
-<cuerpo>
-<div class="contenedor">
-<h1> Tijeras de papel de roca</h1>
-<?php
-if ( isset($_REQUEST['nombre']) ) {
-    echo "<p>Bienvenido: ";
-    echo htmlentities($_REQUEST['nombre']);
-    eco "</p>\n";
-}
-?>
-<form method="post">
-<select name="humano">
-<option value="-1">Seleccionar</option>
-<option value="0">Rock</option>
-<option value="1">Paper</option>
-<option value="2">Scissors</option>
-<option value="3">Test</option>
-</escoger>
-<input type="submit" value="Reproducir">
-<input type="submit" name="logout" value="Cerrar sesión">
-</forma>
 
-<pre>
-<?php
-if ( $human == -1 ) {
- imprimir "Seleccione una estrategia y pulse Reproducir.\n";
-} else if ( $human == 3 ) {
- for($c=0; $c<3; $c++) {
- for($h=0; $h<3; $h++) {
-            $r = cheque($c, $h);
- imprimir "Human=$names[$h] Computer=$names[$c] Result=$r\n";
-        }
-    }
-} más {
- imprimir "Su Play=$names[$human] Computer Play=$names[$computer] Result=$result\n";
-}
-?>
-</pre>
-</Div>
-</cuerpo>
-</HTML>
-
-Paper & Paper === Draw
-Paper & Rock ==== Paper wins
-Paper & Scissor = Scissor wins
-
-Scissor & Scissor = Draw
-Scissor & Rock == Rock wins
-Scissor & Paper = Scissor wins
--->
-</body>
 </html>
